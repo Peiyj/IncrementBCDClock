@@ -1,0 +1,128 @@
+/* Header
+ * Name: Yingjian Pei
+ * Login: cs30fex
+ * Date: Oct 29, 2018
+ * Source of Help: myself and Tutor */ 
+ Description:
+ The purpose of this programming assignment is to gain more experience with:
+
+ ARM assembly bit-wise operations
+ Memory loads and stores (ldr/str)
+ Mapping local variables on the runtime stack and accessing them relative to 
+ frame pointer (fp)
+ Using Standard C Library routines and varied techniques to communicate C
+ Preprocessor-derived values to your assembly routines (accessing global
+ variables set in a C function and calling C functions from assembly)
+ For this assignment you are writing an interactive program that takes user
+ input from the command line and prints the BCD clocks accordingly to stdout.
+ This program will require appropriate error checking and reporting.
+
+
+ How to build/compile the program:
+ 1) You first login to the ucsd ieng6 account
+ 2) Then we need to ssh cs30xxy@pi-cluster.ucsd.edu
+ 3) Then we need to creat a directory named pa1
+ 4) Then we write c and assembly and c files
+ 5) Then we build the assembly and c files by following the pa
+    instructions
+ 6) Afterward, we compile the program by "make"
+ 7) Usually, we might need to "make clean" 
+ 8) Then we would have a executionable file named pa1
+ 9) we run the program by saying ./pa2
+
+Example of normal output:
+  Sun Nov  4 18:13:03 2018
+
+  PPPPPPPPPPPP
+  | .. .. .. |
+  | .o .. .. |
+  | .o .o .o |
+  | .. oo .o |
+  | 06 13 03 |
+  PPPPPPPPPPPP
+
+Example of abnormal output:
+
+Number of clock ticks 1231213 not within range [0-61]
+
+Usage: /home/linux/ieng6/cs30f/cs30fex/../public/pa2test [numTicks [startTime]]
+| [--help]
+    numTicks  -- (optional) number of clock ticks to display
+                     Must be within the range of [0-61]
+                     Default number of ticks is 7
+    startTime -- (optional) starting time of the clock entered as 
+    HH:MM:SS(A|a|P|p)
+                     HH must be within the range of [0-12]
+                     MM must be within the range of [0-59]
+                     SS must be within the range of [0-59]
+                     (A|a|P|p) one option must be specified
+                     Default start time is the current time
+                                                             
+How you tested your program:
+I used gdb to help me debug the errors. By step, next, nexti commands, I am
+able to find the compilation and logical erros at specific lines of function. 
+In this pa, there are a lot of segmentation errors. I used gdp to find the
+memory leaks and was able to make sure the program run without bugs. Then
+finally, I used the diff command to find the difference between the
+original and the standard solution.
+
+README questions
+
+1)What would you do to ensure integrity if you find out a major logical issue
+with the code while the deadline is in several hours?
+
+To ensure integrity, I will just submit everything because I know I will be
+tempted to violate acadeic integrity. I would take a 20% deduction if I feel
+I can possible fix it at the later deadline.
+
+2)Assume in some C code you have the following array:
+int arr[] = {0, 1, 2};
+What is the other way to store the value of the third element of arr to an 
+int x
+other than int x = arr[2]. (Hint: think about pointer manipulationï)
+
+int* ptr = arr;
+*(ptr+2) = x;
+
+3) In vim, what are the commands to show and hide line numbers?
+
+In command line mode: we type ":set nonumber" to show line numbers
+
+In command line mode: we type: ":set nonumber: to hide line numbers
+
+4) In vim, what would be the command to quickly move the cursor to
+
+a. The end of the line and start edit mode) 
+
+o
+
+b. The start of the line while staying in command mode
+
+0
+
+c. One word forward
+
+w
+
+d. 5 lines above
+
+5k
+
+5) what is the unix command to quit from current file without saving the edits 
+you made?
+
+:q!
+
+6)Without opening your main.c file, how could you print the line containing 
+argc  with line number and a context of 3 lines around the current
+line? (3 line before and after the line containing argc)
+
+grep agrc main.c
+
+7)What is the command to check how many files are there in your directory? 
+This command should only prints one number indicating the number of files 
+and should be done in a single line.
+
+
+ls -1 | wc -l
+
